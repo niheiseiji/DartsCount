@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS darts(
+  id bigint(20) NOT NULL AUTO_INCREMENT,
+  total_score int(255) NOT NULL,
+  PRIMARY KEY (id)
+) DEFAULT CHARSET=utf8;

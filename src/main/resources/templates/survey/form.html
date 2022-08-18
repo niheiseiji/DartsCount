@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title th:text="${title}">Insert title here</title>
+	</head>
+	<body>
+		<h1 th:text="${complete}"></h1>
+		<h1 th:text="${title}">title未設定</h1>
+		
+		<form method="post" action="#" th:action="@{/survey/confirm}" th:object="${surveyForm}">
+			<label for="age">年齢:</label>
+			<input id="age" name="age" type="text" th:value="*{age}"><br>
+			<div th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></div>
+	
+			<label for="gender">性別:</label>
+			<div th:each="item : ${radioGender}" class="radio-inline">
+                <input type="radio"  class="form-check-input" th:text="${item.value}" th:value="${item.key}" th:field="*{gender}">
+            </div>
+            <div th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></div>
+            
+ 			<label for="comment">コメント:</label>
+			<textarea name="comment" id="comment" rows="3" cols="40" th:field="*{comment}"></textarea><br>
+			<div th:if="${#fields.hasErrors('comment')}" th:errors="*{comment}"></div>
+			
+			<input type="submit" value="Confirm">
+		</form>
+	</body>
+</html>
